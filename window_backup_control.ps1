@@ -2,6 +2,7 @@ $user = 'root'
 $pass = 'icinga'
 $icinga_host_port = "myicingaserver:5665"
 $local_host = 'mylocalhostname'
+$service = 'sysbackup'
 
 add-type @"
     using System.Net;
@@ -18,7 +19,7 @@ add-type @"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $pair = "$($user):$($pass)"
-$url = 'https://' + $icinga_host_port +'/v1/actions/process-check-result?service='+$local_host+'!sysbackup'
+$url = 'https://' + $icinga_host_port +'/v1/actions/process-check-result?service='+$local_host+'!$service'
 
 try {
     $lastbackupresulthr = Get-WBSummary |select -ExpandProperty lastbackupresulthr
