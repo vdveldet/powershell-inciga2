@@ -19,7 +19,7 @@ add-type @"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $pair = "$($user):$($pass)"
-$url = 'https://' + $icinga_host_port +'/v1/actions/process-check-result?service='+$local_host+'!$service'
+$url = 'https://' + $icinga_host_port +'/v1/actions/process-check-result?service='+$local_host+'!'+$service
 
 try {
     $lastbackupresulthr = Get-WBSummary |select -ExpandProperty lastbackupresulthr
